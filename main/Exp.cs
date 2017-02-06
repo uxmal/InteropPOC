@@ -16,6 +16,11 @@ namespace Interop
         {
             this.name = name;
         }
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 
     public class Const : Exp
@@ -25,6 +30,11 @@ namespace Interop
         public Const(int n)
         {
             this.c = n;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("0x{0:X}", c);
         }
     }
 
@@ -37,6 +47,11 @@ namespace Interop
         {
             this.left = left;
             this.right = right;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("(+ {0} {1})", left, right);
         }
     }
 }

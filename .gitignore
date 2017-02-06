@@ -1,8 +1,9 @@
 **/Debug/
 **/Release/
-*.suo
-*.VC.db
-*.user
 */bin/
 */obj/
 */ipch/
+*.VC.opendb
+*.suo
+*.VC.db
+*.user

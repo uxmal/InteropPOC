@@ -18,22 +18,19 @@ extern "C"
 
 	void __declspec(dllexport) __cdecl Build(IUnknown * arg)
 	{
-		IFactory * factory = nullptr;
-		arg->QueryInterface<IFactory>(&factory);
+		IFactory * f = nullptr;
+		arg->QueryInterface<IFactory>(&f);
 		
-		factory->Reg(0);
-		factory->Const(3);
-		factory->IAdd();
-		factory->Reg(1);
-		factory->Assign();
-		factory->Release();
+		f->Reg(0);
+		f->Const(3);
+		f->IAdd();
+		f->Reg(1);
+		f->Assign();
+
+		f->Release();
 	}
 
 	int __declspec(dllexport) __cdecl Frob(int n) {
 		return n * 2;
-		::OutputDebugStringA("Hello Build\r\n");
-		IUnknown * arg = reinterpret_cast<IUnknown *>(n);
-		Build(arg);
-		return 0;
 	}
 }

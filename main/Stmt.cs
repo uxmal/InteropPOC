@@ -18,5 +18,10 @@ namespace Interop
             this.dst = dst;
             this.src = src;
         }
+
+        public override string ToString()
+        {
+            return string.Format("(set! {0} {1})", dst, src);
+        }
     }
 }
