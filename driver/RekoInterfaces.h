@@ -59,7 +59,6 @@ enum DataTypeEnum {
     Ptr64 = 18,
 };
 
-[uuid(e40ffd0d-3019-4adf-ac48-800f3acfa360)]
 class IFactory : public IUnknown {
 public:
     virtual void __stdcall Const(DataTypeEnum dt, int c) = 0;

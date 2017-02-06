@@ -29,10 +29,6 @@ namespace Interop
 
         private void GenerateInterface(Type itf, TextWriter w)
         {
-            if (itf.GUID != Guid.Empty)
-            {
-                w.WriteLine("[uuid({0:D})]", itf.GUID);
-            }
             w.WriteLine("class {0} : public IUnknown {{", itf.Name);
             w.WriteLine("public:");
 
