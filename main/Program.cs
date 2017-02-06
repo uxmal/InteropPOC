@@ -14,8 +14,7 @@ namespace Interop
         static void Main()
         {
             var chg = new CppHeaderGenerator();
-            chg.Generate(
-                new[]
+            chg.Generate(new[]
                 {
                     typeof(PrimitiveOp).FullName,
                     typeof(DataTypeEnum).FullName,
@@ -28,7 +27,6 @@ namespace Interop
             var iid = new Guid("E40FFD0D-3019-4ADF-AC48-800F3ACFA360");
             IntPtr ifac;
             var hr = Marshal.QueryInterface(factory, ref iid, out ifac);
-            var oo = Marshal.GetObjectForIUnknown(ifac);
             Build(ifac);
             Console.WriteLine(fac.stmts[0].ToString());
             Debug.Assert(fac.stmts.Count == 1);
@@ -36,7 +34,6 @@ namespace Interop
 
         [DllImport("driver.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern int Frob(int n);
-
 
         [DllImport("driver.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern void Build([In] IntPtr factory);
