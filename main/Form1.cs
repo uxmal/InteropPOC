@@ -15,6 +15,19 @@ namespace Interop
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            var chg = new CppHeaderGenerator();
+            chg.Generate(
+                new[]
+                {
+                    typeof(PrimitiveOp).FullName,
+                    typeof(IFactory).FullName,
+                },
+                Console.Out);
+
             Factory fac = new Factory();
             var factory = Marshal.GetIUnknownForObject(fac);
             var iid = new Guid("E40FFD0D-3019-4ADF-AC48-800F3ACFA360");
@@ -24,18 +37,6 @@ namespace Interop
             Build(ifac);
             MessageBox.Show(fac.stmts[0].ToString());
             Debug.Assert(fac.stmts.Count == 1);
-
-            var chg = new CppHeaderGenerator();
-            chg.Generate(
-                new[]
-                {
-                    typeof(IFactory).FullName
-                },
-                Console.Out);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
         }
 
         [DllImport("driver.dll", CallingConvention = CallingConvention.Cdecl)]

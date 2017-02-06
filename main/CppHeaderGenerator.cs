@@ -20,12 +20,19 @@ namespace Interop
                 if (type.IsInterface)
                 {
                     GenerateInterface(type, w);
+                } else if (type.IsEnum)
+                {
+                    GenerateEnum(type, w);
                 }
             }
         }
 
         private void GenerateInterface(Type itf, TextWriter w)
         {
+            if (itf.GUID != Guid.Empty)
+            {
+                w.WriteLine("[uuid({0:D})]", itf.GUID);
+            }
             w.WriteLine("class {0} : public IUnknown {{", itf.Name);
             w.WriteLine("public:");
 
@@ -58,8 +65,21 @@ namespace Interop
                 w.Write("int");
             else if (type == typeof(string))
                 w.Write("LPWSTR");
+            else if (type.IsEnum)
+                w.Write(type.Name);
             else
                 w.Write("??unknown??");
+        }
+
+        private void GenerateEnum(Type enumeration, TextWriter w)
+        {
+            w.WriteLine("enum {0} {{", enumeration.Name);
+            foreach (var mem in Enum.GetNames(enumeration))
+            {
+                w.WriteLine("    {0} = {1},", mem, Convert.ToUInt64(Enum.Parse(enumeration, mem)));
+            }
+            w.WriteLine("};");
+            w.WriteLine();
         }
     }
 }

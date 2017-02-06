@@ -40,20 +40,22 @@ namespace Interop
         }
     }
 
-    public class IAdd : Exp
+    public class BinOp : Exp
     {
+        public PrimitiveOp op;
         public Exp left;
         public Exp right;
 
-        public IAdd(Exp left, Exp right)
+        public BinOp(PrimitiveOp op, Exp left, Exp right)
         {
+            this.op = op;
             this.left = left;
             this.right = right;
         }
 
         public override string ToString()
         {
-            return string.Format("(+ {0} {1})", left, right);
+            return string.Format("({0} {1} {2})", op, left, right);
         }
     }
 }

@@ -3,15 +3,7 @@
 
 #include "stdafx.h"
 
-[uuid("E40FFD0D-3019-4ADF-AC48-800F3ACFA360")]
-class IFactory : public IUnknown
-{
-public:
-	virtual int __stdcall Const(int c) = 0;
-	virtual int __stdcall Reg(LPWSTR str, int reg) = 0;
-	virtual int __stdcall IAdd() = 0;
-	virtual int __stdcall Assign() = 0;
-};
+#include "RekoInterfaces.h"
 
 extern "C"
 {
@@ -22,14 +14,10 @@ extern "C"
 		
 		f->Reg(L"eax", 0);
 		f->Const(3);
-		f->IAdd();
+		f->Bin(PrimitiveOp::IAdd);
 		f->Reg(L"ecx", 1);
 		f->Assign();
 
 		f->Release();
-	}
-
-	int __declspec(dllexport) __cdecl Frob(int n) {
-		return n * 2;
 	}
 }
