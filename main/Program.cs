@@ -27,15 +27,17 @@ namespace Interop
             var iid = new Guid("E40FFD0D-3019-4ADF-AC48-800F3ACFA360");
             IntPtr ifac;
             var hr = Marshal.QueryInterface(factory, ref iid, out ifac);
-            Build(ifac);
+            var bytes = new byte[30];
+            ulong addr = 0x00123400;
+            int offset = 2;
+            bytes[offset] = 0x42;
+            Build(ifac, addr, bytes, offset);
             Console.WriteLine(fac.stmts[0].ToString());
+            Debug.Print(fac.stmts[0].ToString());
             Debug.Assert(fac.stmts.Count == 1);
         }
 
         [DllImport("driver.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int Frob(int n);
-
-        [DllImport("driver.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void Build([In] IntPtr factory);
+        private static extern void Build([In] IntPtr factory, ulong addr, byte[] bytes, int offset);
     }
 }
