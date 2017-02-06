@@ -3,46 +3,76 @@
 // These interfaces and enumerations are genereated by CppHeaderGenerator.cs
 
 enum PrimitiveOp {
-	IAdd = 0,
-	ISub = 1,
-	IMul = 2,
-	SMul = 3,
-	UMul = 4,
-	IDiv = 5,
-	SDiv = 6,
-	UDiv = 7,
-	And = 8,
-	Or = 9,
-	Xor = 10,
-	FAdd = 11,
-	FSub = 12,
-	FMul = 13,
-	FDiv = 14,
-	Eq = 15,
-	Ne = 16,
-	Lt = 17,
-	Le = 18,
-	Ge = 19,
-	Gt = 20,
-	Ult = 21,
-	Ule = 22,
-	Uge = 23,
-	Ugt = 24,
+    Not = 0,
+    Cmp = 1,
+    Neg = 2,
+    AddrOf = 3,
+    IAdd = 4,
+    ISub = 5,
+    IMul = 6,
+    SMul = 7,
+    UMul = 8,
+    IDiv = 9,
+    SDiv = 10,
+    UDiv = 11,
+    Shl = 12,
+    Shr = 13,
+    Sar = 14,
+    And = 15,
+    Or = 16,
+    Xor = 17,
+    FAdd = 18,
+    FSub = 19,
+    FMul = 20,
+    FDiv = 21,
+    Eq = 22,
+    Ne = 23,
+    Lt = 24,
+    Le = 25,
+    Ge = 26,
+    Gt = 27,
+    Ult = 28,
+    Ule = 29,
+    Uge = 30,
+    Ugt = 31,
+};
+
+enum DataTypeEnum {
+    Void = 0,
+    Bool = 1,
+    Byte = 2,
+    Int8 = 3,
+    Word16 = 4,
+    Int16 = 5,
+    UInt16 = 6,
+    Ptr16 = 7,
+    Word32 = 8,
+    Int32 = 9,
+    UInt32 = 10,
+    Real32 = 11,
+    Ptr32 = 12,
+    FarPtr32 = 13,
+    Word64 = 14,
+    Int64 = 15,
+    UInt64 = 16,
+    Real64 = 17,
+    Ptr64 = 18,
 };
 
 [uuid(e40ffd0d-3019-4adf-ac48-800f3acfa360)]
 class IFactory : public IUnknown {
 public:
-	virtual void __stdcall Const(int c) = 0;
-	virtual void __stdcall Reg(LPWSTR name, int number) = 0;
-	virtual void __stdcall FlagGroup(LPWSTR name, int regNumber, int flagMask) = 0;
-	virtual void __stdcall Bin(PrimitiveOp op) = 0;
-	virtual void __stdcall Unary(PrimitiveOp op) = 0;
-	virtual void __stdcall Apply() = 0;
-	virtual void __stdcall Assign() = 0;
-	virtual void __stdcall Call() = 0;
-	virtual void __stdcall SideEffect() = 0;
-	virtual void __stdcall If() = 0;
-	virtual void __stdcall Goto() = 0;
+    virtual void __stdcall Const(DataTypeEnum dt, int c) = 0;
+    virtual void __stdcall Reg(DataTypeEnum dt, LPWSTR name, int number) = 0;
+    virtual void __stdcall FlagGroup(LPWSTR name, int regNumber, int flagMask) = 0;
+    virtual void __stdcall Bin(PrimitiveOp op) = 0;
+    virtual void __stdcall Unary(PrimitiveOp op) = 0;
+    virtual void __stdcall Mem(DataTypeEnum dt) = 0;
+    virtual void __stdcall Apply() = 0;
+    virtual void __stdcall Assign() = 0;
+    virtual void __stdcall Call() = 0;
+    virtual void __stdcall SideEffect() = 0;
+    virtual void __stdcall If() = 0;
+    virtual void __stdcall Goto() = 0;
 };
 

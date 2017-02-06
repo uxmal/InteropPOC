@@ -7,17 +7,12 @@
 
 extern "C"
 {
-	void __declspec(dllexport) __cdecl Build(IUnknown * arg)
+	void __declspec(dllexport) __cdecl Build(IFactory * f)
 	{
-		IFactory * f = nullptr;
-		arg->QueryInterface<IFactory>(&f);
-		
-		f->Reg(L"eax", 0);
-		f->Const(3);
+		f->Reg(DataTypeEnum::Word32, L"eax", 0);
+		f->Const(DataTypeEnum::Word32, 3);
 		f->Bin(PrimitiveOp::IAdd);
-		f->Reg(L"ecx", 1);
+		f->Reg(DataTypeEnum::Word32, L"ecx", 1);
 		f->Assign();
-
-		f->Release();
 	}
 }

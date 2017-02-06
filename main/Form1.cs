@@ -24,6 +24,7 @@ namespace Interop
                 new[]
                 {
                     typeof(PrimitiveOp).FullName,
+                    typeof(DataTypeEnum).FullName,
                     typeof(IFactory).FullName,
                 },
                 Console.Out);

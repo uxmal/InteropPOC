@@ -6,6 +6,12 @@ namespace Interop
 {
     public class Exp
     {
+        public DataTypeEnum DataType;
+
+        public Exp(DataTypeEnum dt)
+        {
+            this.DataType = dt;
+        }
     }
 
     public class Id : Exp
@@ -13,7 +19,7 @@ namespace Interop
         public string name;
         private int reg;
 
-        public Id(string name, int reg) 
+        public Id(DataTypeEnum dt, string name, int reg) : base(dt)
         {
             this.name = name;
             this.reg = reg;
@@ -29,8 +35,9 @@ namespace Interop
     {
         public int c;
 
-        public Const(int n)
+        public Const(DataTypeEnum dt, int n) : base(dt)
         {
+            this.DataType = dt;
             this.c = n;
         }
 
@@ -46,7 +53,7 @@ namespace Interop
         public Exp left;
         public Exp right;
 
-        public BinOp(PrimitiveOp op, Exp left, Exp right)
+        public BinOp(PrimitiveOp op, Exp left, Exp right) : base(left.DataType)
         {
             this.op = op;
             this.left = left;
@@ -56,6 +63,33 @@ namespace Interop
         public override string ToString()
         {
             return string.Format("({0} {1} {2})", op, left, right);
+        }
+    }
+
+    public class Unary : Exp
+    {
+        public PrimitiveOp op;
+        public Exp exp;
+
+        public Unary(PrimitiveOp op, Exp exp) : base(exp.DataType)
+        {
+            this.op = op;
+            this.exp = exp;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("({0} {1})", op, exp);
+        }
+    }
+
+    public class Mem : Exp
+    {
+        public Exp ea;
+
+        public Mem(DataTypeEnum dt, Exp ea) : base(dt)
+        {
+            this.ea = ea;
         }
     }
 }
