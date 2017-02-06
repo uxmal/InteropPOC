@@ -1,13 +1,17 @@
 // driver.cpp : Defines the exported functions for the DLL application.
 //
 
-#include "stdafx.h"
-
+#include "types.h"
 #include "RekoInterfaces.h"
 
 extern "C"
 {
-	void __declspec(dllexport) __cdecl Build(
+#if _WINDOWS
+	void __declspec(dllexport) __cdecl
+#else
+	extern void
+#endif
+	Build(
 		IFactory * f,
 		unsigned long long uAddr, 
 		unsigned const char * bytes,

@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interop", "Interop.csproj", "{AB3067B3-B653-420C-B93D-4B3B3473D653}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E4F024C9-34B3-426F-9D92-B5F962D8C5BE} = {E4F024C9-34B3-426F-9D92-B5F962D8C5BE}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "driver", "..\driver\driver.vcxproj", "{E4F024C9-34B3-426F-9D92-B5F962D8C5BE}"
 EndProject

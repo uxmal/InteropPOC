@@ -37,7 +37,11 @@ namespace Interop
             Debug.Assert(fac.stmts.Count == 1);
         }
 
+#if __MonoCS__
+        [DllImport("driver.so", CallingConvention = CallingConvention.Cdecl)]
+#else
         [DllImport("driver.dll", CallingConvention = CallingConvention.Cdecl)]
+#endif
         private static extern void Build([In] IntPtr factory, ulong addr, byte[] bytes, int offset);
     }
 }

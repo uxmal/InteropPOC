@@ -59,19 +59,20 @@ enum DataTypeEnum {
     Ptr64 = 18,
 };
 
+
 class IFactory : public IUnknown {
 public:
-    virtual void __stdcall Const(DataTypeEnum dt, int c) = 0;
-    virtual void __stdcall Reg(DataTypeEnum dt, LPWSTR name, int number) = 0;
-    virtual void __stdcall FlagGroup(LPWSTR name, int regNumber, int flagMask) = 0;
-    virtual void __stdcall Bin(PrimitiveOp op) = 0;
-    virtual void __stdcall Unary(PrimitiveOp op) = 0;
-    virtual void __stdcall Mem(DataTypeEnum dt) = 0;
-    virtual void __stdcall Apply() = 0;
-    virtual void __stdcall Assign() = 0;
-    virtual void __stdcall Call() = 0;
-    virtual void __stdcall SideEffect() = 0;
-    virtual void __stdcall If() = 0;
-    virtual void __stdcall Goto() = 0;
+    virtual void STDAPICALLTYPE Const(DataTypeEnum dt, int c) = 0;
+    virtual void STDAPICALLTYPE Reg(DataTypeEnum dt, wchar_t *name, int number) = 0;
+    virtual void STDAPICALLTYPE FlagGroup(wchar_t *name, int regNumber, int flagMask) = 0;
+    virtual void STDAPICALLTYPE Bin(PrimitiveOp op) = 0;
+    virtual void STDAPICALLTYPE Unary(PrimitiveOp op) = 0;
+    virtual void STDAPICALLTYPE Mem(DataTypeEnum dt) = 0;
+    virtual void STDAPICALLTYPE Apply() = 0;
+    virtual void STDAPICALLTYPE Assign() = 0;
+    virtual void STDAPICALLTYPE Call() = 0;
+    virtual void STDAPICALLTYPE SideEffect() = 0;
+    virtual void STDAPICALLTYPE If() = 0;
+    virtual void STDAPICALLTYPE Goto() = 0;
 };
 

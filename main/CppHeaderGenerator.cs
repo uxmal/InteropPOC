@@ -34,7 +34,7 @@ namespace Interop
 
             foreach (var method in itf.GetMethods())
             {
-                w.Write("    virtual void __stdcall {0}(", method.Name);
+                w.Write("    virtual void STDAPICALLTYPE {0}(", method.Name);
                 GenerateArgs(method, w);
                 w.WriteLine(") = 0;");
             }
@@ -60,7 +60,7 @@ namespace Interop
             if (type == typeof(int))
                 w.Write("int");
             else if (type == typeof(string))
-                w.Write("LPWSTR");
+                w.Write("wchar_t * ");
             else if (type.IsEnum)
                 w.Write(type.Name);
             else
