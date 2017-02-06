@@ -11,10 +11,12 @@ namespace Interop
     public class Id : Exp
     {
         public string name;
+        private int reg;
 
-        public Id(string name)
+        public Id(string name, int reg) 
         {
             this.name = name;
+            this.reg = reg;
         }
 
         public override string ToString()

@@ -13,7 +13,7 @@ namespace Interop
     public interface IFactory
     {
         void Const(int c);
-        void Reg(int reg);
+        void Reg([MarshalAs(UnmanagedType.LPWStr)] string name, int number);
         void IAdd();
         void Assign();
     }
@@ -50,9 +50,9 @@ namespace Interop
             stack.Push(new IAdd(left, right));
         }
 
-        public void Reg(int reg)
+        public void Reg(string name, int reg)
         {
-            stack.Push(new Id("r" + reg));
+            stack.Push(new Id(name, reg));
         }
     }
 }

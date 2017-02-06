@@ -24,6 +24,14 @@ namespace Interop
             Build(ifac);
             MessageBox.Show(fac.stmts[0].ToString());
             Debug.Assert(fac.stmts.Count == 1);
+
+            var chg = new CppHeaderGenerator();
+            chg.Generate(
+                new[]
+                {
+                    typeof(IFactory).FullName
+                },
+                Console.Out);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -39,3 +47,4 @@ namespace Interop
 
     }
 }
+

@@ -8,23 +8,22 @@ class IFactory : public IUnknown
 {
 public:
 	virtual int __stdcall Const(int c) = 0;
-	virtual int __stdcall Reg(int reg) = 0;
+	virtual int __stdcall Reg(LPWSTR str, int reg) = 0;
 	virtual int __stdcall IAdd() = 0;
 	virtual int __stdcall Assign() = 0;
 };
 
 extern "C"
 {
-
 	void __declspec(dllexport) __cdecl Build(IUnknown * arg)
 	{
 		IFactory * f = nullptr;
 		arg->QueryInterface<IFactory>(&f);
 		
-		f->Reg(0);
+		f->Reg(L"eax", 0);
 		f->Const(3);
 		f->IAdd();
-		f->Reg(1);
+		f->Reg(L"ecx", 1);
 		f->Assign();
 
 		f->Release();
