@@ -1,0 +1,8 @@
+**/Debug/
+**/Release/
+*.suo
+*.VC.db
+*.user
+*/bin/
+*/obj/
+*/ipch/
