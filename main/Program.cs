@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core;
+using Core.Interop;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -27,14 +29,22 @@ namespace Interop
             var iid = new Guid("E40FFD0D-3019-4ADF-AC48-800F3ACFA360");
             IntPtr ifac;
             var hr = Marshal.QueryInterface(factory, ref iid, out ifac);
+
+            GenerateProcedure(ifac);
+
+            Console.WriteLine(fac.stmts[0].ToString());
+            Debug.Print(fac.stmts[0].ToString());
+            Debug.Assert(fac.stmts.Count == 1);
+            Console.ReadKey();
+        }
+
+        private static void GenerateProcedure(IntPtr ifac)
+        {
             var bytes = new byte[30];
             ulong addr = 0x00123400;
             int offset = 2;
             bytes[offset] = 0x42;
             Build(ifac, addr, bytes, offset);
-            Console.WriteLine(fac.stmts[0].ToString());
-            Debug.Print(fac.stmts[0].ToString());
-            Debug.Assert(fac.stmts.Count == 1);
         }
 
 #if __MonoCS__
