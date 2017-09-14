@@ -10,8 +10,8 @@ namespace Interop
 
     public class Assign : Stmt
     {
-        public Exp dst;
-        public Exp src;
+        public Exp dst { get; set; }
+        public Exp src { get; set; }
 
         public Assign(Exp dst, Exp src)
         {
