@@ -163,7 +163,9 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="driver.cpp" />
+    <ClCompile Include="exp.cpp" />
     <ClCompile Include="NativeFactory.cpp" />
+    <ClCompile Include="stmt.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

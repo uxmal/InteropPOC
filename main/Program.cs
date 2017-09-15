@@ -42,7 +42,6 @@ namespace Interop
             m.Bin(PrimitiveOp.ISub);
             m.Reg(DataTypeEnum.Word32, "r1", 1);
             m.Assign();
-
         }
 
         private static void GetProcedureFromNativeSide()

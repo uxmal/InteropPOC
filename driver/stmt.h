@@ -6,16 +6,18 @@ class Stmt
 {
 public:
 	virtual ~Stmt() {}
+	virtual void write(std::wostream & stm) = 0;
 };
 
 class Assign : public Stmt
 {
 public:
-	Assign(std::unique_ptr<Exp> && dst, std::unique_ptr<Exp> && src) : 
+	Assign(Exp * dst, Exp * src) : 
 		Dst(std::move(dst)),
 		Src(std::move(src))
 	{}
+	virtual void write(std::wostream & stm) override;
 public:
-	std::unique_ptr<Exp> Dst;
-	std::unique_ptr<Exp> Src;
+	Exp * Dst;
+	Exp * Src;
 };

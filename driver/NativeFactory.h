@@ -28,7 +28,9 @@ public:
 private:
 	int cRef;
 
+	std::vector<std::unique_ptr<Exp>> exprs;
+	std::stack<Exp *> expStack;
+
 	std::vector<std::unique_ptr<Stmt>> stmts;
-	std::stack<std::unique_ptr<Exp>> expStack;
 };
 
