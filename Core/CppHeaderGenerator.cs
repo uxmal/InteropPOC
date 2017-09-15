@@ -53,6 +53,13 @@ namespace Core
                 w.Write(" ");
                 w.Write(param.Name);
             }
+            if (method.ReturnType != typeof(void))
+            {
+                w.Write(sep);
+                WriteParameterType(method.ReturnType, w);
+                w.Write(" * ");
+                w.Write("retValue");
+            }
         }
 
         private void WriteParameterType(Type type, TextWriter w)

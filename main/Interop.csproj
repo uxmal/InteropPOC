@@ -93,8 +93,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
-    <!--    <Copy SourceFiles="$(SolutionDir)\driver.so" DestinationFolder="$(TargetDir)" /> -->
-    <!-- <Copy SourceFiles="$(SolutionDir)Debug\driver.pdb" DestinationFolder="$(TargetDir)" /> -->
+  
   </Target>
   <Target Name="AfterBuild">
     <ItemGroup>
@@ -103,6 +102,6 @@
       <NativeFiles Include="$(ProjectDir)x64\$(Configuration)\plugin.dll" />
       <NativeFiles Include="$(ProjectDir)x64\$(Configuration)\plugin.pdb" />
     </ItemGroup>
-    <Copy SourceFiles="@(NativeFiles)" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(NativeFiles)" DestinationFolder="$(TargetDir)" />
   </Target>
 </Project>

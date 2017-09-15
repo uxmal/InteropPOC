@@ -1,8 +1,14 @@
 // driver.cpp : Defines the exported functions for the DLL application.
 //
 
+#include <memory>
+#include <stack>
+#include <vector>
 #include "types.h"
+#include "exp.h"
+#include "stmt.h"
 #include "RekoInterfaces.h"
+#include "NativeFactory.h"
 
 extern "C"
 {
@@ -24,5 +30,15 @@ extern "C"
 		f->Bin(PrimitiveOp::IAdd);
 		f->Reg(DataTypeEnum::Word32, L"ecx", 1);
 		f->Assign();
+	}
+
+#if _WINDOWS
+	__declspec(dllexport) IFactory * __cdecl
+#else
+	extern IFactory *
+#endif
+	CreateNativeFactory()
+	{
+		return new NativeFactory();
 	}
 }

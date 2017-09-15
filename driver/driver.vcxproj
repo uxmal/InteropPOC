@@ -141,7 +141,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="exp.h" />
+    <ClInclude Include="NativeFactory.h" />
     <ClInclude Include="RekoInterfaces.h" />
+    <ClInclude Include="stmt.h" />
     <ClInclude Include="types.h" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +163,7 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="driver.cpp" />
+    <ClCompile Include="NativeFactory.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

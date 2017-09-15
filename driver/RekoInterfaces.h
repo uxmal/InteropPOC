@@ -62,17 +62,17 @@ enum DataTypeEnum {
 
 class IFactory : public IUnknown {
 public:
-    virtual void STDAPICALLTYPE Const(DataTypeEnum dt, int c) = 0;
-    virtual void STDAPICALLTYPE Reg(DataTypeEnum dt, wchar_t *name, int number) = 0;
-    virtual void STDAPICALLTYPE FlagGroup(wchar_t *name, int regNumber, int flagMask) = 0;
-    virtual void STDAPICALLTYPE Bin(PrimitiveOp op) = 0;
-    virtual void STDAPICALLTYPE Unary(PrimitiveOp op) = 0;
-    virtual void STDAPICALLTYPE Mem(DataTypeEnum dt) = 0;
-    virtual void STDAPICALLTYPE Apply() = 0;
-    virtual void STDAPICALLTYPE Assign() = 0;
-    virtual void STDAPICALLTYPE Call() = 0;
-    virtual void STDAPICALLTYPE SideEffect() = 0;
-    virtual void STDAPICALLTYPE If() = 0;
-    virtual void STDAPICALLTYPE Goto() = 0;
+    virtual HRESULT STDAPICALLTYPE Const(DataTypeEnum dt, int c) = 0;
+    virtual HRESULT STDAPICALLTYPE Reg(DataTypeEnum dt, wchar_t *name, int number) = 0;
+    virtual HRESULT STDAPICALLTYPE FlagGroup(wchar_t *name, int regNumber, int flagMask) = 0;
+    virtual HRESULT STDAPICALLTYPE Bin(PrimitiveOp op) = 0;
+    virtual HRESULT STDAPICALLTYPE Unary(PrimitiveOp op) = 0;
+    virtual HRESULT STDAPICALLTYPE Mem(DataTypeEnum dt) = 0;
+    virtual HRESULT STDAPICALLTYPE Apply() = 0;
+    virtual HRESULT STDAPICALLTYPE Assign() = 0;
+    virtual HRESULT STDAPICALLTYPE Call() = 0;
+    virtual HRESULT STDAPICALLTYPE SideEffect() = 0;
+    virtual HRESULT STDAPICALLTYPE If() = 0;
+    virtual HRESULT STDAPICALLTYPE Goto() = 0;
 };
 

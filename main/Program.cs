@@ -24,18 +24,48 @@ namespace Interop
                 },
                 Console.Out);
 
+            //GetProcedureFromNativeSide();
+            SendProcedureToNativeSide();
+            Console.ReadKey();
+        }
+
+        private static void SendProcedureToNativeSide()
+        {
+            var m = CreateNativeFactory();
+
+            m.Const(DataTypeEnum.Word32, 3);
+            m.Reg(DataTypeEnum.Word32, "r2", 2);
+            m.Assign();
+
+            m.Reg(DataTypeEnum.Word32, "r1", 1);
+            m.Reg(DataTypeEnum.Word32, "r2", 2);
+            m.Bin(PrimitiveOp.ISub);
+            m.Reg(DataTypeEnum.Word32, "r1", 1);
+            m.Assign();
+
+        }
+
+        private static void GetProcedureFromNativeSide()
+        {
             Factory fac = new Factory();
-            var factory = Marshal.GetIUnknownForObject(fac);
-            var iid = new Guid("E40FFD0D-3019-4ADF-AC48-800F3ACFA360");
-            IntPtr ifac;
-            var hr = Marshal.QueryInterface(factory, ref iid, out ifac);
+            IntPtr ifac = GetComInterface<IFactory>(fac);
 
             GenerateProcedure(ifac);
+
+            Marshal.Release(ifac);
 
             Console.WriteLine(fac.stmts[0].ToString());
             Debug.Print(fac.stmts[0].ToString());
             Debug.Assert(fac.stmts.Count == 1);
-            Console.ReadKey();
+        }
+
+        private static IntPtr GetComInterface<TComInterface>(object obj)
+        {
+            var unk = Marshal.GetIUnknownForObject(obj);
+            var iid = typeof(TComInterface).GUID;
+            IntPtr ifac;
+            var hr = Marshal.QueryInterface(unk, ref iid, out ifac);
+            return ifac;
         }
 
         private static void GenerateProcedure(IntPtr ifac)
@@ -53,5 +83,12 @@ namespace Interop
         [DllImport("driver.dll", CallingConvention = CallingConvention.Cdecl)]
 #endif
         private static extern void Build([In] IntPtr factory, ulong addr, byte[] bytes, int offset);
+
+#if __MonoCS__
+        [DllImport("driver.so", CallingConvention = CallingConvention.Cdecl)]
+#else
+        [DllImport("driver.dll", CallingConvention = CallingConvention.Cdecl)]
+#endif
+        private static extern IFactory CreateNativeFactory();
     }
 }
